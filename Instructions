@@ -1,7 +1,16 @@
-WHEN USING CODESPACE:
+WHEN USING CODESPACE in Browser:
 For any Changes you want to commit
   -open terminal and type git add .
 
+Using CodeSpace in Visual Studio Code:
+For any Changes you want to commit
+  -Make sure to save the file you edited
+  -open terminal and type git add .
+  -git commit -m "Message you want"
+  -git push origin main
 
 
 
+Troubleshooting:
+git pull origin main
+git pull --rebase origin main
