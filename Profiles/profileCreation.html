@@ -11,6 +11,10 @@
 <body>
     <div class="create-account-container">
         <div class="create-account-box">
+            <nav class="nav-tabs">
+                <a href="../index.html">Home</a>
+                <a href="Login.html">Login</a>
+            </nav>
         
             <form id="profile_form" onsubmit="createProfile(event)">
                 <div class="input-container">
@@ -35,11 +39,85 @@
                 <label for="bio">Bio:</label><br>
                 <textarea id="bio" name="bio"></textarea><br><br>
 
-                <input type="submit" value="Submit">
+                <input type="submit" value="Register">
             </form>
         </div>
     </div>
-    <script src="javascript/createprofile.js"></script>
+    <!-- <script src="javascript/createprofile.js"></script> -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+      
+        const firebaseConfig = {
+          apiKey: "AIzaSyBaNPzsPv3_U2oyC_DUdXqwax9nz1lurP8",
+          authDomain: "serviceswitch-9a265.firebaseapp.com",
+          projectId: "serviceswitch-9a265",
+          storageBucket: "serviceswitch-9a265.appspot.com",
+          messagingSenderId: "742555980154",
+          appId: "1:742555980154:web:6c95fedc4a86e7c696c6c3",
+          measurementId: "G-M9B2NWSSQQ"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        // Now you're ready to create users, store profiles, etc.
+        document.getElementById('profile_form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+        
+            // Get values from the form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const confirmEmail = document.getElementById('confirm_email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const bio = document.getElementById('bio').value;
+        
+            const [firstName, lastName] = name.split(' ');
+            if (email !== confirmEmail) {
+                alert('Emails do not match. Please try again.');
+                return;
+            }
+            // Check if password and confirm password match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                return;
+            }
+        
+            try {
+                // Create user account
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+        
+                // Save user profile to Firestore
+                await setDoc(doc(db, "users", user.uid), {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    bio: bio,
+                    createdAt: new Date()
+                });
+        
+                // Save profile data to sessionStorage
+                const userProfile = {
+                    firstName,
+                    lastName,
+                    email,
+                    bio
+                };
+                sessionStorage.setItem("userProfile", JSON.stringify(userProfile));
+        
+                console.log('Account created and profile saved:', firstName, lastName, email);
+                alert("Account created successfully! Please log in.");
+                window.location.href = 'Login.html';
+            } catch (error) {
+                console.error('Error creating account:', error);
+                alert('Error creating account: ' + error.message);
+            }
+        });    
+      </script>
+      
 
 </body>
 </html>
