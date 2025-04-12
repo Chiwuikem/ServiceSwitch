@@ -1,0 +1,39 @@
+/* General Body Styling */
+body {
+    background-image: url('../assets/CityPic.jpg'); /* Path from css folder to assets folder */
+    background-size: cover; /* Ensures the image covers the entire body */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* This color will show if the image doesn't cover the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding:20px;
+    box-sizing: border-box;
+}
+/* Container for the Create Account Box */
+.create-account-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency for the background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Styling the Create Account Box */
+.create-account-box {
+    padding: 30px;
+}
+
+/* Input Container Styling */
+.input-container {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
