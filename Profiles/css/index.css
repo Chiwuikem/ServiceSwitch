@@ -1,0 +1,15 @@
+body {
+    background-image: url('../assets/remi-muller-LlHgaeBwYVE-unsplash.jpg'); /* Path from css folder to assets folder */
+    background-size: cover; /* Ensures the image covers the entire body */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* This color will show if the image doesn't cover the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding:20px;
+    box-sizing: border-box;
+}

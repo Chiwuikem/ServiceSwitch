@@ -5,17 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="css/Login.css">
 </head>
 <body>
-    <form method="post">
-        <label for="username">UserName:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
 
-        <label for="password">Password: </label><br>
-        <input type="password" id="paswword" name="password" required><br><br>
+    <nav class="nav-tabs">
+        <a href="../index.html">Home</a>
+        <a href="profileCreation.html">Sign Up</a>
+    </nav>
+    <div class="create-account-box">
+        <form id="login_form">
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" required><br><br>
 
-        <input type="submit" value="Submit">
-    </form>
+            <label for="password">Password: </label><br>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBaNPzsPv3_U2oyC_DUdXqwax9nz1lurP8",
+            authDomain: "serviceswitch-9a265.firebaseapp.com",
+            projectId: "serviceswitch-9a265",
+            storageBucket: "serviceswitch-9a265.appspot.com",
+            messagingSenderId: "742555980154",
+            appId: "1:742555980154:web:6c95fedc4a86e7c696c6c3",
+            measurementId: "G-M9B2NWSSQQ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.getElementById('login_form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            try {
+                // Attempt to log in the user
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        
+                // Get the user's UID
+                const user = userCredential.user;
+                const uid = user.uid;
+        
+                // Store UID in sessionStorage
+                sessionStorage.setItem('uid', uid);
+        
+                console.log("User logged in:", email);
+        
+                // Redirect to the profile page
+                window.location.href = 'profile.html';
+            } catch (error) {
+                console.error("Login failed:", error.message);
+        
+                // Show error message based on error code
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.style.display = 'block';
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage.textContent = "Account not found. Make an account!";
+                } else {
+                    errorMessage.textContent = "Login failed: " + error.message;
+                }
+            }
+        });  
+
+        //     signInWithEmailAndPassword(auth, email, password)
+        //         .then((userCredential) => {
+        //             // Signed in 
+        //             const user = userCredential.user;
+        //             console.log("User signed in:", user);
+        //         })
+        //         .catch((error) => {
+        //             const errorCode = error.code;
+        //             const errorMessage = error.message;
+        //             console.error("Error signing in:", errorCode, errorMessage);
+        //         });
+        // });
+    </script>
 
 </body>
 </html>

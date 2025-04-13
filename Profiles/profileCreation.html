@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="css/ProfileCreation.css">
 </head>
 <body>
+    
     <div class="create-account-container">
+        <nav class="nav-tabs">
+            <a href="../index.html">Home</a>
+            <a href="Login.html">Login</a>
+        </nav>
         <div class="create-account-box">
-            <nav class="nav-tabs">
-                <a href="../index.html">Home</a>
-                <a href="Login.html">Login</a>
-            </nav>
-        
-            <form id="profile_form" onsubmit="createProfile(event)">
+
+            <!-- <form id="profile_form" onsubmit="createProfile(event)"> -->
+            <form id="profile_form">
                 <div class="input-container">
                     <label for="name">Name:</label><br>
                     <input type="text" id="name" name="name" required><br><br>

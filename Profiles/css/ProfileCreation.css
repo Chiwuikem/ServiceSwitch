@@ -1,6 +1,6 @@
 /* General Body Styling */
 body {
-    background-image: url('../assets/CityPic.jpg'); /* Path from css folder to assets folder */
+    background-image: url('../assets/zachary-keimig-Wz-5buxsNqA-unsplash.jpg'); /* Path from css folder to assets folder */
     background-size: cover; /* Ensures the image covers the entire body */
     background-position: center; /* Centers the background image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
