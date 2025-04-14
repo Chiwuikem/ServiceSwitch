@@ -1,5 +1,5 @@
 body {
-    background-image: url('../assets/remi-muller-LlHgaeBwYVE-unsplash.jpg'); /* Path from css folder to assets folder */
+    background-image: url('../assets/vahid-kanani-4-QaKPwndmw-unsplash.jpg'); /* Path from css folder to assets folder */
     background-size: cover; /* Ensures the image covers the entire body */
     background-position: center; /* Centers the background image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -13,3 +13,57 @@ body {
     padding:20px;
     box-sizing: border-box;
 }
+.top-center-text {
+    color:white;
+    display: flex;
+    justify-content: center;  /* center horizontally */
+    align-items: center;  /* top align */
+    height: 100vh;
+    text-align: center;
+    transform: translate(-70%, -10%); /* left & up */
+  }
+/* src/components/Navbar.css */
+.navbar {
+    position: absolute;
+    top:20px;
+    right:20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index:10;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* UberEats green */
+  }
+  
+  .nav-links a {
+    margin-left: 16px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #ffffff;
+  }
+  
+  .signup-btn {
+    background-color: #3516fc;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 9999px;
+  }
+  
+  .signup-btn:hover {
+    background-color: #000000;
+  }
+  .login-btn {
+    background-color: #3516fc;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 9999px;
+  }
+  
+  .login-btn:hover {
+    background-color: #000000;
+  }
+
