@@ -71,11 +71,13 @@
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const confirmEmail = document.getElementById('confirm_email').value;
+            const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm_password').value;
             const bio = document.getElementById('bio').value;
         
-            const [firstName, lastName] = name.split(' ');
+            const [firstName, ...rest] = name.split(' ');
+            const lastName =rest.join(' ') || ''; // Join the rest of the name as last name
             if (email !== confirmEmail) {
                 alert('Emails do not match. Please try again.');
                 return;
@@ -95,6 +97,7 @@
                 await setDoc(doc(db, "users", user.uid), {
                     firstName: firstName,
                     lastName: lastName,
+                    username: username,
                     email: email,
                     bio: bio,
                     createdAt: new Date()
