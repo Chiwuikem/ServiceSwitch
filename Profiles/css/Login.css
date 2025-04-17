@@ -12,6 +12,8 @@ body {
     margin: 0;
     padding:20px;
     box-sizing: border-box;
+    color: black;
+    font-weight: bolder;
 }
 .create-account-box {
     padding: 30px;
@@ -44,4 +46,8 @@ body {
 .nav-tabs a.active {
     background-color: #007BFF;
     color: white;
+}
+
+.highlight {
+    background-color: #f0f0f0;
 }
